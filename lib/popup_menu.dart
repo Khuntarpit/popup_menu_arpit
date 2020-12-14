@@ -44,8 +44,8 @@ typedef MenuClickCallback = Function(MenuItemProvider item);
 typedef PopupMenuStateChanged = Function(bool isShow);
 
 class PopupMenu {
-  static var itemWidth = MediaQuery.of(context).size.height*0.28;
-  static var itemHeight = MediaQuery.of(context).size.width*0.065;
+  static var itemWidth = MediaQuery.of(context).size.height*0.23;
+  static var itemHeight = MediaQuery.of(context).size.width*0.06;
   static var arrowHeight = 10.0;
   OverlayEntry _entry;
   List<MenuItemProvider> items;
