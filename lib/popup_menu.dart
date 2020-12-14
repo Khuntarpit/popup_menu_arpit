@@ -238,7 +238,7 @@ class PopupMenu {
                           width: menuWidth(),
                           height: arrowHeight*4,
                           decoration: BoxDecoration(
-                              color: Colors.transparent,
+                              color: _backgroundColor,
                               borderRadius: BorderRadius.only(topRight:Radius.circular(10.0),topLeft: Radius.circular(10.0) )),
                           child: Padding(
                               padding: EdgeInsets.all(8),
