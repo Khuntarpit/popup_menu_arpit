@@ -21,13 +21,15 @@ class MenuItem extends MenuItemProvider {
   TextStyle textStyle;
   TextAlign textAlign;
 
-  MenuItem({this.title, this.image, this.userInfo, this.textStyle, this.textAlign});
+
+  MenuItem({this.title, this.image, this.userInfo, this.textStyle, this.textAlign,});
 
   @override
   Widget get menuImage => image;
 
   @override
   String get menuTitle => title;
+
 
   @override
   TextStyle get menuTextStyle =>
@@ -68,6 +70,9 @@ class PopupMenu {
   /// The max column count, default is 4.
   int _maxColumn;
 
+  bool discount;
+  String discountTitle;
+
   /// callback
   VoidCallback dismissCallback;
   MenuClickCallback onClickMenu;
@@ -96,7 +101,10 @@ class PopupMenu {
         Color highlightColor,
         Color lineColor,
         PopupMenuStateChanged stateChanged,
-        List<MenuItemProvider> items}) {
+        List<MenuItemProvider> items,
+        bool discount,
+        String discountTitle,
+      }) {
     this.onClickMenu = onClickMenu;
     this.dismissCallback = onDismiss;
     this.stateChanged = stateChanged;
@@ -105,6 +113,8 @@ class PopupMenu {
     this._backgroundColor = backgroundColor ?? Color(0xff232323);
     this._lineColor = lineColor ?? Color(0xff353535);
     this._highlightColor = highlightColor ?? Color(0x55000000);
+    this.discount = discount ?? false;
+    this.discountTitle = discountTitle ?? 'Add Discount';
     if (context != null) {
       PopupMenu.context = context;
     }
@@ -220,17 +230,28 @@ class PopupMenu {
                   top: offset.dy,
                   child: Container(
                     width: menuWidth(),
-                    height: menuHeight(),
+                    height:discount == true ? menuHeight()+ arrowHeight*4 : menuHeight(),
                     child: Column(
                       children: <Widget>[
+                        discount == true ?
+                        Container(
+                          width: menuWidth(),
+                          height: arrowHeight*4,
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.only(topRight:Radius.circular(10.0),topLeft: Radius.circular(10.0) )),
+                          child: Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(discountTitle,style: TextStyle(color: Colors.black,fontSize: 17,))
+                          ),
+                        ) : Container(),
                         ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
                             child: Container(
                               width: menuWidth(),
                               height: menuHeight(),
                               decoration: BoxDecoration(
                                   color: _backgroundColor,
-                                  borderRadius: BorderRadius.circular(10.0)),
+                                  borderRadius: discount == true ? BorderRadius.only(bottomLeft:Radius.circular(10.0),bottomRight: Radius.circular(10.0) ) : BorderRadius.circular(10.0)),
                               child: Column(
                                 children: _createRows(),
                               ),
