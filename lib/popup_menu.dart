@@ -33,7 +33,7 @@ class MenuItem extends MenuItemProvider {
 
   @override
   TextStyle get menuTextStyle =>
-      textStyle ?? TextStyle(color: Color(0xffc5c5c5), fontSize: MediaQuery.of(context).size.width <= 766 ? 7 : 10.0);
+      textStyle ?? TextStyle(color: Color(0xffc5c5c5), fontSize: 10.0);
 
   @override
   TextAlign get menuTextAlign =>
@@ -495,13 +495,13 @@ class _MenuItemWidgetState extends State<_MenuItemWidget> {
     } else {
       // only text
       return Padding(
-        padding: const EdgeInsets.all(MediaQuery.of(context).size.width <= 766 ? 4 : 8),
+        padding: EdgeInsets.all(MediaQuery.of(context).size.width <= 766 ? 4 : 8),
         child: Container(
             height: 30,
             width: 90,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width <= 766 ?4: 8),
+                borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width <= 766 ? 4: 8),
                 color: Colors.orange.withOpacity(0.8),
               ),
               child: Center(
