@@ -495,7 +495,7 @@ class _MenuItemWidgetState extends State<_MenuItemWidget> {
     } else {
       // only text
       return Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(MediaQuery.of(context).size.width <= 766 ? 4 : 8),
         child: Container(
             height: 30,
             width: 90,
