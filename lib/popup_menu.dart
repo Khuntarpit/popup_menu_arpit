@@ -33,7 +33,7 @@ class MenuItem extends MenuItemProvider {
 
   @override
   TextStyle get menuTextStyle =>
-      textStyle ?? TextStyle(color: Color(0xffc5c5c5), fontSize: 10.0);
+      textStyle ?? TextStyle(color: Color(0xffc5c5c5), fontSize: MediaQuery.of(context).size.width <= 766 ? 7 : 10.0);
 
   @override
   TextAlign get menuTextAlign =>
