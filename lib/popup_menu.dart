@@ -472,25 +472,44 @@ class _MenuItemWidgetState extends State<_MenuItemWidget> {
   Widget _createContent() {
     if (widget.item.menuImage != null) {
       // image and text
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            width: 30.0,
-            height: 30.0,
-            child: widget.item.menuImage,
-          ),
-          Container(
-            height: 22.0,
-            child: Material(
-              color: Colors.transparent,
-              child: Text(
-                widget.item.menuTitle,
-                style: widget.item.menuTextStyle,
+      // return Column(
+      //   mainAxisAlignment: MainAxisAlignment.center,
+      //   children: <Widget>[
+      //     Container(
+      //       width: 30.0,
+      //       height: 30.0,
+      //       child: widget.item.menuImage,
+      //     ),
+      //     Container(
+      //       height: 22.0,
+      //       child: Material(
+      //         color: Colors.transparent,
+      //         child: Text(
+      //           widget.item.menuTitle,
+      //           style: widget.item.menuTextStyle,
+      //         ),
+      //       ),
+      //     )
+      //   ],
+      // );
+      return Padding(
+        padding: EdgeInsets.all(MediaQuery.of(context).size.width <= 766 ? 4 : 8),
+        child: Container(
+            height: MediaQuery.of(context).size.width <= 766 ? 20 : 30,
+            width: 90,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width <= 766 ? 4: 8),
+                color: Colors.white.withOpacity(0.8),
               ),
-            ),
-          )
-        ],
+              child: Center(
+                child:  Text(
+                  widget.item.menuTitle,
+                  style: widget.item.menuTextStyle,
+                ),
+              ),
+            )
+        ),
       );
     } else {
       // only text
